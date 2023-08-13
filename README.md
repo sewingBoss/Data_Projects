@@ -2,5 +2,5 @@
 All Data Projects are here
 
 ## Contents
-### DivvyBikeSharing - SQL & PowerBI
+DivvyBikeSharing - SQL & PowerBI
 
