@@ -1,38 +1,27 @@
 DivvyBikeSharing
-================
-sewingBoss
-2023-08-13
-
-## Divvy Bike Sharing
+======
 
 [Divvy](https://en.wikipedia.org/wiki/Divvy) is a bike sharing system in
-Chicago recently acquired and owned by Lyft, Inc.
+Chicago recently acquired and owned by Lyft, Inc.  
 
-#### Management Decision Problem (MDP)
+*Management Decision Problem (MDP):* Let’s convert casual riders to members
 
-Let’s convert casual riders to members
+*The Market research question (MRQ):* How do they each use Divvy?
 
-#### The Market research question (MRQ)
+We'll be using 12 months of ride data (MAY 2022 - APR 2023) published [here](https://divvybikes.com/system-data).  
 
-How do they each use Divvy?
+  
+-------
+### Cleaning  
+All cleaning was done in BigQuery SQL.
 
-``` r
-summary(cars)
-```
+__NOTE__ Only more complex queries are displayed here. For the rest, please see [here](link).  
 
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
+  
+[Someone said](https://medium.com/@iainselliott/google-data-analytics-capstone-project-cyclistic-case-study-8baed2f5a286) that classic and docked bikes are the same so I pretended that my hypothetical boss confirmed this and converted all to classic.  
 
-## Including Plots
+[The same person](https://github.com/iainelli/Capstone-Project-Cyclistic-Case-Study/blob/main/data_cleaning_analysis.sql) had a list of stations that were service stations for the bikes and not public. I checked the rows with these and the amount of missing data in those rows convinced me that this was true; again, in real life I would confirm with my boss, which I will pretend I did for now.  
 
-You can also embed plots, for example:
+Ride length was computed from the timestamps  
 
-![](DivvyBikeSharing_files/figure-gfm/pressure-1.png)<!-- -->
-
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+Rides start from 1 minute, and anything longer than 24 is considered stolen or missing
