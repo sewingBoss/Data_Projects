@@ -212,4 +212,11 @@ main_df <- collect(main_df)
 write.csv(main_df, file = "C:\\Users\\Mana\\OneDrive\\Documents\\R\\cyclistic\\Data_R\\cleaned_data.csv")
 ```  
 Let's check the no. of rides per season  
-![count_season_plot](count_season_plot.png?)
+![count_season_plot](count_season_plot.png?)    
+We see that:
+* members ride more overall
+* Both increase towards summer then decline
+* Large gap in winter
+* Small gap in summer
+
+
