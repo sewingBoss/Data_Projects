@@ -211,3 +211,5 @@ main_df <- collect(main_df)
 #Save data in folder
 write.csv(main_df, file = "C:\\Users\\Mana\\OneDrive\\Documents\\R\\cyclistic\\Data_R\\cleaned_data.csv")
 ```  
+Let's check the no. of rides per season  
+![count_season_plot](count_season_plot.png?)
