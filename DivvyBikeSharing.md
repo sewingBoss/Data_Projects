@@ -212,11 +212,45 @@ main_df <- collect(main_df)
 write.csv(main_df, file = "C:\\Users\\Mana\\OneDrive\\Documents\\R\\cyclistic\\Data_R\\cleaned_data.csv")
 ```  
 Let's check the no. of rides per season  
-![count_season_plot](count_season_plot.png?)    
+![count_season_plot](images/count_season_plot.png)    
 We see that:
 * members ride more overall
 * Both increase towards summer then decline
 * Large gap in winter
 * Small gap in summer
+</br>
 
 
+Let's check the monthly change  
+![ count_%_plot ](images/count_%_plot.png)  
+We see that:  
+* casuals' monthly consumption is far more elastic
+* members' monthly consumption is relatively stable with some slight ups and downs during summer and winter as we would expect
+</br>
+
+Next is daily trends  
+![ count_day_plot ](images/count_day_plot.png) ![ count_day_season_plot ](images/count_day_season_plot.png)     
+We see that:  
+* casuals ride more on weekends than weekdays
+* members ride a lot during the week *likely for work?*
+* casuals ride more than members on weekends during summer
+* ride patterns don't seem to largely change otherwise
+</br>
+
+Hourly trends  
+![ count_hour_plot ](images/count_hour_plot.png) ![ count_hour_season_plot ](images/count_hour_season_plot.png)    
+We see that:  
+* casuals seem to ride more towards the end of the working day *for leisure and going home?*
+* It's fairly safe to assume that our guess was right; many members ride to and from work
+* casuals seem to ride far less during the winter *depending on membership cancellation rates, this is something we may fix by converting them to members....?*
+* hourly ride patterns don't seem to largely change for members
+</br>
+
+Bike type  
+![ count_type_plot ](images/count_type_plot.png) ![ count_type_season_plot ](images/count_type_season_plot.png)   
+![ count_type_day_plot ](images/count_type_day_plot.png)   
+![ count_type_hour_morning_plot ](images/count_type_hour_morning_plot.png)  
+We see that:  
+* Both prefer classic bikes over electric bikes
+* casuals seem to have a slighly more equal preference between the types than members
+* There seems to be a slight preference for electric bikes in the morning for casual riders
