@@ -229,7 +229,7 @@ We see that:
 </br>
 
 Next is daily trends  
-![ count_day_plot ](images/count_day_plot.png) ![ count_day_season_plot ](images/count_day_season_plot.png)     
+<img scr = 'images/count_day_plot.png' width = '400'> <img scr = 'images/count_day_season_plot.png' width = '400'> 
 We see that:  
 * casuals ride more on weekends than weekdays
 * members ride a lot during the week *likely for work?*
@@ -238,19 +238,21 @@ We see that:
 </br>
 
 Hourly trends  
-![ count_hour_plot ](images/count_hour_plot.png) ![ count_hour_season_plot ](images/count_hour_season_plot.png)    
+<img src = 'images/count_hour_plot.png' width = '400'> <img src='images/count_hour_season_plot.png' width='440'>  
 We see that:  
 * casuals seem to ride more towards the end of the working day *for leisure and going home?*
 * It's fairly safe to assume that our guess was right; many members ride to and from work
-* casuals seem to ride far less during the winter *depending on membership cancellation rates, this is something we may fix by converting them to members....?*
+* casuals seem to ride far less during the winter *depending on membership cancellation rates, this is something significant that we may fix by converting them to members....?*
 * hourly ride patterns don't seem to largely change for members
 </br>
 
 Bike type  
-![ count_type_plot ](images/count_type_plot.png) ![ count_type_season_plot ](images/count_type_season_plot.png)   
-![ count_type_day_plot ](images/count_type_day_plot.png)   
-![ count_type_hour_morning_plot ](images/count_type_hour_morning_plot.png)  
+<img src='images/count_type_plot.png' width='360'> <img src='images/count_type_season_plot.png' width='400'>  
 We see that:  
 * Both prefer classic bikes over electric bikes
 * casuals seem to have a slighly more equal preference between the types than members
-* There seems to be a slight preference for electric bikes in the morning for casual riders
+* Casuals also rode slightly more electric bikes during [winter](images/count_type_season_plot.png) and during [early morning hours](images/count_type_hour_morning.png)
+</br>
+
+Until now, we've been looking at ride frequency, but what about each ride's length?  
+</br>  
