@@ -533,15 +533,20 @@ FROM `japanese-grammar-276308.divvy_project_mana.cyclistic_combined`;
 ---------------Seasons ready----------------------------------
 
 ------------------------medians----------------------------
+/* month_day means daily medians of each month. VS day_medians means overall per day median*/
 CREATE OR REPLACE TABLE `japanese-grammar-276308.divvy_project_mana.cyclistic_combined` AS
 SELECT *,
 PERCENTILE_CONT(ride_length, 0.5) OVER(PARTITION BY member_casual, start_at_month_name, started_at_day, started_at_hour) AS day_hour_medians,
+PERCENTILE_CONT(ride_length, 0.5) OVER(PARTITION BY member_casual, started_at_hour) AS hour_medians,
 PERCENTILE_CONT(ride_length, 0.5) OVER  (PARTITION BY member_casual, start_at_month_name, started_at_day) AS month_day_medians, 
+PERCENTILE_CONT(ride_length, 0.5) OVER  (PARTITION BY member_casual, started_at_day) AS day_medians, 
 PERCENTILE_CONT(ride_length, 0.5) OVER  (PARTITION BY member_casual, start_at_month_name) AS month_medians,
 PERCENTILE_CONT(ride_length, 0.5) OVER  (PARTITION BY member_casual, season_number) AS seasonal_medians,
 PERCENTILE_CONT(ride_length, 0.5) OVER(PARTITION BY member_casual, rideable_type, start_at_month_name) AS rideable_month_medians,
 PERCENTILE_CONT(ride_length, 0.5) OVER(PARTITION BY member_casual, rideable_type, start_at_month_name, start_at_dayofweek) AS rideable_month_day_medians,
-PERCENTILE_CONT(ride_length, 0.5) OVER(PARTITION BY member_casual, rideable_type, start_at_month_name, start_at_dayofweek, started_at_hour) AS rideable_day_hour_medians
+PERCENTILE_CONT(ride_length, 0.5) OVER(PARTITION BY member_casual, rideable_type, start_at_dayofweek) AS rideable_day_medians,
+PERCENTILE_CONT(ride_length, 0.5) OVER(PARTITION BY member_casual, rideable_type, start_at_month_name, start_at_dayofweek, started_at_hour) AS rideable_day_hour_medians,
+PERCENTILE_CONT(ride_length, 0.5) OVER(PARTITION BY member_casual, rideable_type, started_at_hour) AS rideable_hour_medians
 FROM `japanese-grammar-276308.divvy_project_mana.cyclistic_combined`;
 
 --------------medians ready------------------------------------
