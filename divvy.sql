@@ -461,6 +461,105 @@ FROM `japanese-grammar-276308.divvy_project_mana.member_route_all`;
 
 -----------------flow map ready--------------
 
+
+---------------------------------------map for lunch time hypothesis---------------------------------
+--- Making a table for Flow map viz
+---finding common start and end pairs
+---making a view of the strings to compare
+CREATE OR REPLACE VIEW `japanese-grammar-276308.divvy_project_mana.rides_view` AS
+SELECT *,
+  CONCAT(
+    CAST(ROUND(start_lat, 4) AS STRING),
+    ' , ',
+    CAST(ROUND(start_lng, 4) AS STRING)
+  ) AS start_lat_lng_round,
+  CONCAT(
+    CAST(ROUND(end_lat, 4) AS STRING),
+    ' , ',
+    CAST(ROUND(end_lng, 4) AS STRING)
+  ) AS end_lat_lng_round
+FROM `japanese-grammar-276308.divvy_project_mana.cyclistic_combined`;
+
+---find top 10
+CREATE OR REPLACE TABLE `japanese-grammar-276308.divvy_project_mana.member_route_lunch` AS
+SELECT member_casual, start_lat_lng_round, end_lat_lng_round, COUNT(*) AS num_occurrences
+FROM (
+  SELECT *
+  FROM`japanese-grammar-276308.divvy_project_mana.rides_view`
+  WHERE started_at_hour = 13 OR started_at_hour = 14)
+WHERE member_casual = 'casual'
+GROUP BY member_casual, start_lat_lng_round, end_lat_lng_round
+ORDER BY num_occurrences DESC
+LIMIT 10;
+
+---members
+CREATE OR REPLACE VIEW `japanese-grammar-276308.divvy_project_mana.common_route_lunch_member` AS
+SELECT member_casual, start_lat_lng_round, end_lat_lng_round, COUNT(*) AS num_occurrences
+FROM (
+  SELECT *
+  FROM`japanese-grammar-276308.divvy_project_mana.rides_view`
+  WHERE started_at_hour = 13 OR started_at_hour = 14)
+WHERE member_casual = 'member'
+GROUP BY member_casual, start_lat_lng_round, end_lat_lng_round
+ORDER BY num_occurrences DESC
+LIMIT 10;
+---combine them
+INSERT INTO `japanese-grammar-276308.divvy_project_mana.member_route_lunch`
+SELECT * FROM `japanese-grammar-276308.divvy_project_mana.common_route_lunch_member`;
+---add column for start_station_name_v1
+ALTER TABLE `japanese-grammar-276308.divvy_project_mana.member_route_lunch`
+ADD COLUMN
+  start_station_name_v1 STRING;
+
+  ---insert most likely start_station_name_v1
+---make view of distinct start_station_name_v1 and order by count
+
+---add these to member_route_all
+UPDATE `japanese-grammar-276308.divvy_project_mana.member_route_lunch` AS CRA
+SET CRA.start_station_name_v1 = CCS.start_station_name_v1
+FROM
+  `japanese-grammar-276308.divvy_project_mana.first_appearance` AS CCS
+WHERE CRA.start_lat_lng_round = CCS.start_lat_lng_round;
+
+----------Do same for end
+---add column for end_station_name_v1
+ALTER TABLE `japanese-grammar-276308.divvy_project_mana.member_route_lunch`
+ADD COLUMN
+  end_station_name_v1 STRING;
+
+---insert most likely end_station_name_v1
+UPDATE `japanese-grammar-276308.divvy_project_mana.member_route_lunch` AS CRA
+SET CRA.end_station_name_v1 = CCS.end_station_name_v1
+FROM
+  `japanese-grammar-276308.divvy_project_mana.first_appearance_end` AS CCS
+WHERE CRA.end_lat_lng_round = CCS.end_lat_lng_round;
+
+
+---splitting the lat_lng columns
+CREATE OR REPLACE TABLE `japanese-grammar-276308.divvy_project_mana.member_route_lunch` AS
+SELECT
+SPLIT(start_lat_lng_round, ' , ')[OFFSET(0)] AS start_lat_round,
+SPLIT(start_lat_lng_round, ' , ')[OFFSET(1)] AS start_lng_round,
+SPLIT(end_lat_lng_round, ' , ')[OFFSET(0)] AS end_lat_round,
+SPLIT(end_lat_lng_round, ' , ')[OFFSET(1)] AS end_lng_round,
+num_occurrences, start_station_name_v1, end_station_name_v1, member_casual
+FROM
+  `japanese-grammar-276308.divvy_project_mana.member_route_lunch`;
+
+CREATE OR REPLACE TABLE `japanese-grammar-276308.divvy_project_mana.member_route_lunch` AS
+SELECT
+  CAST(start_lat_round AS FLOAT64) AS start_lat_round,
+  CAST(start_lng_round AS FLOAT64) AS start_lng_round,
+  CAST(end_lat_round AS FLOAT64) AS end_lat_round,
+  CAST(end_lng_round AS FLOAT64) AS end_lng_round,
+  num_occurrences,
+  start_station_name_v1,
+  end_station_name_v1,
+  member_casual
+FROM
+  `japanese-grammar-276308.divvy_project_mana.member_route_lunch`;
+ ---------------------map for lunchtime hypothesis ready---------------------------
+
 /*
 THIS PROVED USELESS AS POWER BI COULD NOT HANDLE THE AMOUNT OF DATA IT HAD TO RELATE TO
 
