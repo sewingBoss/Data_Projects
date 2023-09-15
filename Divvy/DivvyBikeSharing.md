@@ -15,7 +15,7 @@ We'll be using 12 months of ride data (MAY 2022 - APR 2023) published [here](htt
 ### Cleaning  
 All cleaning was done in BigQuery SQL.
 
- *__NOTE__ Only more complex queries are displayed here. For the rest, please see [here](link).*  
+ *__NOTE__ Only more complex queries are displayed here. For the rest, please see [here](Divvy/Divvy.sql).*  
 
 
 Some basic things that I did are:
@@ -186,7 +186,7 @@ ORDER BY member_casual;
 This was done in R, and later summarised into a visualisation report in Power BI which you may find [here](https://app.powerbi.com/reportEmbed?reportId=d4c7cae7-edec-4648-b7f2-bfcb21e42c09&autoAuth=true&ctid=d1b36e95-0d50-42e9-958f-b63fa906beaa)  
 (This proved to me to be a mistake as using Tableau would have saved me hours)  
 
-*NOTE: I will include some samples of R code in this report. The rest is available [here]()
+*NOTE: I will include some samples of R code in this report. The rest is available [here](Divvy/Summary.R)
 <br>  
 I first loaded the data straight from BigQuery and saved it to my computer.  
 ```r
