@@ -510,7 +510,7 @@ To conclude, we were able to explore the general trends of users. However, the d
 
 In my humble opinion, there are no strong recommendations that can be made with this data except for some basic and broad approaches such as:  
 * Consider marketing the savings users could make by purchasing a membership. This may be effective to capture casual users who use Divvy to commute, such as the "morning electric commuters" and raise sales during Winter months (assuming retention rates are sufficient during Winter)  
-* 
+* Consider discounting regular consumption patterns that are unique to commuters, such as short electric bike commutes.
 
 It is also worth noting that there are signs of the public opinion of the bike sharing's maintenance has fallen since Lyft's aqcuisition of Divvy. Bicycle availability is a crucial factor that will have to be addressed before any of these strategies will have any significant effect.  
 The product position of Divvy bikes is in close competition with Lyft's electric scooters since they are close substitutes. To avoid each service cannibalising each other, there may be prospect in repositioning Divvy's service towards longer ride users (casuals) by pushing the currently offered "Day pass", as having a seat is an advantage unique to bicycles.
