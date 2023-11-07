@@ -1,4 +1,1 @@
-### Glossary
-
-[Analysis Report](/DivvyBikeSharing.md)  
-[R code](/Summary.R)  
+Please go to the relevant files
